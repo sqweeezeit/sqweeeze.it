@@ -137,4 +137,5 @@ def Text_Note(message):
     a.commit()
     a.close()
    
-bot.polling()
+if __name__ == '__main__':
+    bot.polling(none_stop=True)
