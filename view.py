@@ -17,7 +17,7 @@ def view(cur, Log, message, bot):
     d = 0
     for row in cur.execute("SELECT Number FROM "+ Log +" ORDER BY Number"):
         d = d+1
-    if d != None:
+    if d != 1:
         for i in range(0,d-1):
             query = "SELECT Number FROM "+ Log +" ORDER BY Number"
             cur.execute(query)
@@ -37,7 +37,7 @@ def view(cur, Log, message, bot):
 
         bot.send_message(message.chat.id,"Input number of note:")
         bot.register_next_step_handler(message, Text)
-    elif d == None:
+    elif d == 1:
         kb = types.ReplyKeyboardRemove()
         bot.send_message(message.chat.id, 'There is no notes', reply_markup=kb)
         
