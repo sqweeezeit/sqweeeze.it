@@ -37,7 +37,7 @@ def view(cur, Log, message, bot):
 
         bot.send_message(message.chat.id,"Input number of note:")
         bot.register_next_step_handler(message, Text)
-    else:
+    elif d == None:
         kb = types.ReplyKeyboardRemove()
         bot.send_message(message.chat.id, 'There is no notes', reply_markup=kb)
         
