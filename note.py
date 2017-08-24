@@ -34,11 +34,11 @@ def New_Log(message):
     try:
         new_note_table.new_table(cursor, LOG)
         a.commit()
-        a.close()
         bot.send_message(message.chat.id,"Password:")
         bot.register_next_step_handler(message, New_Pas)
     except sqlite3.OperationalError:
         bot.send_message(message.chat.id,"Login is not available!")
+    a.close()
 
 def New_Pas(message):
     a = sqlite3.connect('10.db')
