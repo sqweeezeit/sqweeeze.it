@@ -1,0 +1,327 @@
+
+<html>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+<head>
+	<meta charset="utf-8">
+	<script src="jquery-3.2.1.min.js"></script>
+</head>
+
+
+<body>
+	<style>
+		H1Style {
+			font-family: Arial Black;
+			font-size: 300%;
+		}
+		P1Style {
+			font-family: Open Sans;
+			font-size: 130%;
+		}
+		BoxStyle {
+			
+			background: linear-gradient(-70deg, #faffff, #f0fcfc);
+			box-shadow: 0 0 2px gray;
+		}
+		Square1 {
+			width: 20px; height: 20px;
+			background: #000000;
+			opacity: 0.08;
+		}
+		.AcceptLoseWin {
+			font-family: Open Sans;
+			font-size: 130%;
+			height:50px; 
+			width:235px; 
+			background:#00a2ab; 
+			color: white;
+			border-radius:7px;
+		}
+		.AcceptLoseWin:hover {
+			background: #00d5e0;  
+		}
+		}
+	</style>
+
+	<H1Style>Игра 1</H1Style>
+	<img id="Refresh" src="reniew_normal.png" width="18" height="20" align="right"> 
+	<p><P1Style>На полоске из десяти клеток слева стоит фишка. Игроки ходят поочереди, переставляя фишку на одну, две или три клетки вправо.</P1Style></p>
+	<p><P1Style>Проигрывает тот, кто не может сделать ход.</P1Style></p>
+	
+	<div id="Game" style="background: linear-gradient(-70deg, #faffff, #f0fcfc);
+						  box-shadow: 0 0 2px gray;">
+		<p id='ButtonHide' style="font-weight: bold">
+			<P1Style>Попробуйте поиграть в эту игру, начиная первым или вторым.</P1Style>
+			<img id="arrowImg" src="arrow-01.svg" width="18" height="20" align="right">
+		</p>
+		
+		<div id="HiddingArea">
+			<div style="width: 250px; height: 200px; outline: 1px #d1d3d4 solid; position: relative; left: 30px;">
+				<p style="position: relative; top: 20px; left: 48px">
+					<P1Style>Первым ходит</P1Style>
+				</p>
+				<div id="ButtonPlayer" style="white-space: nowrap;">
+					<div id="ButtonPlayerBackground" style="position:relative; left:65px; top: 30px;
+						width:120px; height:30px; background: #000000;
+						opacity: 0.08;display: inline-block">	
+					</div>
+					<div id="ButtonPlayerShadow" style="position:relative; left:-60px; top: 30px;
+						width:120px; height:30px;
+						box-shadow: inset 0 2px 6px gray;display: inline-block">
+					</div>
+				<p style="position:relative;left:-150px;top: 22px; display: inline-block"><P1Style>игрок</P1Style></p>
+				</div>
+		
+				<div id="ButtonRand" style="white-space: nowrap;">
+					<div id="ButtonRandBackground" style="position:relative; left:65px; top: 5px;
+						width:120px; height:30px; background: white;
+						opacity: 1;display: inline-block">	
+					</div>
+					<div id="ButtonRandShadow" style="position:relative;left:-60px; top: 5px;
+						width:120px; height:30px;
+						box-shadow: -2px 2px 4px gray; display:inline-block">
+					</div>
+					<p style="position:relative; left:-182px; top:-3px;display: inline-block"><P1Style>компьютер</P1Style></p>
+				</div>	
+		</div>
+		
+		<div id="SquareS" style="white-space: nowrap; position:relative; ; top: -130px; left: 400px; width:100px">
+			<div id="sqr1" style=" width:50px; height: 50px; background: #000000; opacity: 0.08; display: inline-block"></div>
+			<div id="sqr2" style=" width:50px; height: 50px; background: #000000; opacity: 0.08; display: inline-block"></div>
+			<div id="sqr3" style=" width:50px; height: 50px; background: #000000; opacity: 0.08; display: inline-block"></div>
+			<div id="sqr4" style=" width:50px; height: 50px; background: #000000; opacity: 0.08; display: inline-block"></div>
+			<div id="sqr5" style=" width:50px; height: 50px; background: #000000; opacity: 0.08; display: inline-block"></div>
+			<div id="sqr6" style=" width:50px; height: 50px; background: #000000; opacity: 0.08; display: inline-block"></div>
+			<div id="sqr7" style=" width:50px; height: 50px; background: #000000; opacity: 0.08; display: inline-block"></div>
+			<div id="sqr8" style=" width:50px; height: 50px; background: #000000; opacity: 0.08; display: inline-block"></div>
+			<div id="sqr9" style=" width:50px; height: 50px; background: #000000; opacity: 0.08; display: inline-block"></div>
+			<div id="sqr10" style=" width:50px; height: 50px; background: #000000; opacity: 0.08; display: inline-block"></div>
+			<pre style="position: relative; top:-15px"> <P1Style>   9       8        7        6        5        4       3        2        1       0</P1Style></pre>
+		</div>
+		
+		<img id="Chip" src="chip-08.png" style="position:relative; left:330px; top:-242px; height:65px; width:65px">
+	</div></div>
+		
+		<div id="PlayerLost" hidden>	
+			<div style="width:100%; height:100%; background:#000000; opacity:0.7; position:fixed; top:0px; left:0px"></div>
+			<div style="position:absolute;top:50%; margin: -100px 0 0 -200px; left: 50%; height: 200px; width: 400px; background:white; box-shadow: 0 0 4px black">
+				<center><p style="position:relative; top: 15px;"><P1Style>Победил компьютер.</P1Style></p></center>
+				
+				<center><div  id="AcceptLose" class="AcceptLoseWin" style="position:relative; top: 40px">
+					<text style="position:relative; top:10px;">Начать сначала</text>
+				</div></center>
+			</div>
+		</div>
+		<div id="Cover" hidden style="height:10px;">
+			<div style="position:relative; background:linear-gradient(-70deg, #ddfcc7, #befae4); opacity:0.75; width:100%; height:420; top:-419px"></div>
+		</div>
+		<div id="PlayerWon" hidden>
+			<div style="width:100%; height:100%; position:fixed; top:0px; left:0px"></div>
+			<div style="position:absolute;top:50%; margin: -100px 0 0 -200px; left: 50%; height: 200px; width: 400px; background:white; box-shadow: 0 0 15px gray">
+				<center><p style="position:relative; top: 15px;"><P1Style>Победил игрок!</P1Style></p></center>
+				<center><div id="AcceptWin"class="AcceptLoseWin" style="position:relative; top: 40px">
+					<text style="position:relative; top:10px;">Начать сначала</text>
+				</div></center>
+			</div>
+		</div>
+	<script>
+		$("#Refresh").hover(function() {
+			$("#Refresh").attr("src", "reniew_hover.png");
+		}, function() {
+			$("#Refresh").attr("src", "reniew_normal.png");
+		})
+		$("#AcceptLose").click(function() {
+			$("#PlayerLost").hide();
+			Refresh();
+		})
+		$("#AcceptWin").click(function() {
+			$("#PlayerWon").hide();
+			document.body.style.background ="white";
+			$("#Cover").hide();
+			Refresh();
+		})
+		var curPosition = 0; arrayOfElem = new Array(10);
+		var ChipLeft = document.getElementById('Chip').getBoundingClientRect().left;
+		for (i = 0; i < 10; i++){
+			arrayOfElem[i] = document.getElementById("sqr" + (i+1));
+		}
+		function Rand(){
+			var randomStep, userStep, brickSize = 54, coords, coordsChip;
+			for (i=curPosition; i<10;i++)
+				arrayOfElem[i].style.opacity = "0.3";
+			function randomInteger(min, max) 
+			{
+				var rand = min + Math.random() * (max + 1 - min);
+				rand = Math.floor(rand);
+				return rand;
+			}
+			if ((10 - curPosition) > 3)
+			{
+				randomStep = randomInteger(1,3);
+				if (curPosition == 0) {
+					curPosition = curPosition + randomStep;
+					ChipLeft = document.getElementById("Chip").getBoundingClientRect().left;
+					$('#Chip').animate({left: "+=10"}, 50)
+					$('#Chip').animate({left: "+="+(randomStep*brickSize)}, 500, function() {
+						coordsChip = document.getElementById("Chip").getBoundingClientRect();
+						for (a = 0,i=0; i < 10; i++) {
+							coords = arrayOfElem[i].getBoundingClientRect();
+							a = coords.left - coordsChip.left-10;
+							if (a<0){
+								arrayOfElem[i].style.opacity = "1"
+								arrayOfElem[i].style.backgroundColor = "#e6d0a1";
+							}
+							else arrayOfElem[i].style.opacity = "0.08";
+						}
+					});
+				}
+				else {
+					curPosition = curPosition + randomStep;
+					$('#Chip').animate({left: "+="+(randomStep*brickSize)}, 500, function() {
+						coordsChip = document.getElementById("Chip").getBoundingClientRect();
+						for (a = 0,i=0; i < 10; i++) {
+							coords = arrayOfElem[i].getBoundingClientRect();
+							a = coords.left - coordsChip.left-10;
+							if (a<0){
+								arrayOfElem[i].style.opacity = "1"
+								arrayOfElem[i].style.backgroundColor = "#e6d0a1";
+							}
+							else arrayOfElem[i].style.opacity = "0.08";
+						}
+					});
+				}
+			}
+			else
+			{
+				randomStep = (10 - curPosition);
+				curPosition = 10*brickSize;
+				$('#Chip').animate({left: "+="+(randomStep*brickSize)}, 500, function() {
+					coordsChip = document.getElementById("Chip").getBoundingClientRect();
+					for (a = 0,i=0; i < 10; i++) {
+						coords = arrayOfElem[i].getBoundingClientRect();
+						a = coords.left - coordsChip.left-10;
+						if (a<0){
+							arrayOfElem[i].style.opacity = "1"
+							arrayOfElem[i].style.backgroundColor = "#e6d0a1";
+						}
+						else arrayOfElem[i].style.opacity = "0.08";
+					}
+					setTimeout($("#PlayerLost").show(), 2000);
+				});
+			}
+			return curPosition, ChipLeft;
+		}
+		function Refresh() {
+			$('#Chip').animate({left: "+="+(ChipLeft - document.getElementById("Chip").getBoundingClientRect().left)}, 500, function() {
+				for (i = 0; i<10; i++) {
+					arrayOfElem[i].style.opacity = "0.08";
+					arrayOfElem[i].style.background = "#000000";
+					curPosition = 0;
+				}
+			})
+			PlayerRandButtons();
+			return curPosition = 0
+		}
+		$("#Refresh").click(Refresh);
+		$('#ButtonHide').click(function() {
+			if ($('#HiddingArea').is(':visible'))
+				$('#HiddingArea').hide("slow")
+			else 
+				$('#HiddingArea').show("slow");
+			})
+		$('#ButtonRand').click(function() {
+			if ($('#ButtonPlayerBackground').css("background") != "white") {
+				$('#ButtonPlayerBackground').css("background","white");
+				$('#ButtonPlayerBackground').css("opacity","1");
+				$('#ButtonPlayerShadow').css("box-shadow","-2px 2px 4px gray");
+			
+				$('#ButtonRandBackground').css("background","#000000");
+				$('#ButtonRandBackground').css("opacity","0.08");
+				$('#ButtonRandShadow').css("box-shadow","inset 0 2px 6px gray")
+			if (curPosition == 0)
+				Rand();	
+			}
+		})
+		function PlayerRandButtons() {
+			if ($('#ButtonRandBackground').css("background") != "white") {
+				$('#ButtonRandBackground').css("background","white");
+				$('#ButtonRandBackground').css("opacity","1");
+				$('#ButtonRandShadow').css("box-shadow","-2px 2px 4px gray");
+			
+				$('#ButtonPlayerBackground').css("background","#000000");
+				$('#ButtonPlayerBackground').css("opacity","0.08");
+				$('#ButtonPlayerShadow').css("box-shadow","inset 0 2px 6px gray")
+			}
+		}
+		$('#ButtonPlayer').click(PlayerRandButtons);
+		ChipLeft = document.getElementById("Chip").getBoundingClientRect().left;
+		document.getElementById("Chip").onmousedown = function(e) {
+			var ChangeX = e.pageX, ChangeY = e.pageY;
+			var x, y;
+			for (i = curPosition+3; i<10; i++) {
+				arrayOfElem[i].style.opacity = "0.3";
+			}
+			x = parseInt(document.getElementById("Chip").style.left, 10);
+			y = parseInt(document.getElementById("Chip").style.top,10) ;
+			function moveTo(e) {
+				var X, Y;
+				X = x + e.pageX - ChangeX ;
+				Y = y + e.pageY - ChangeY;
+				document.getElementById("Chip").style.left = X ;
+ 				document.getElementById("Chip").style.top =  Y;
+			}
+			document.onmousemove = function(e) {
+				moveTo(e)
+			}
+			document.getElementById('Chip').onmouseup = function(e) {
+				document.getElementById("Chip").onmouseup = null;
+				document.onmousemove = null;
+				if   ((document.getElementById('Chip').getBoundingClientRect().top < arrayOfElem[0].getBoundingClientRect().top + 40) &&
+					 (document.getElementById('Chip').getBoundingClientRect().top > arrayOfElem[0].getBoundingClientRect().top - 40) &&
+					 ((document.getElementById('Chip').getBoundingClientRect().left - arrayOfElem[curPosition].getBoundingClientRect().left) < 
+					  130 ) && ((document.getElementById('Chip').getBoundingClientRect().left - arrayOfElem[curPosition].getBoundingClientRect().left) > 
+					  -30) ) {  
+					for (i = curPosition; i<10; i++) {
+						if (document.getElementById("Chip").getBoundingClientRect().left + 30 > arrayOfElem[i].getBoundingClientRect().left) {
+							arrayOfElem[i].style.opacity = "1";
+							arrayOfElem[i].style.backgroundColor = "#e6d0a1";						
+							curPosition += 1;
+						}
+					}
+					if (curPosition != 10) 
+						setTimeout(Rand, 1000);
+				}
+				for (i = curPosition; i<10; i++) {
+					arrayOfElem[i].style.opacity = "0.08";
+				}
+				if (curPosition != 0) {
+					var PlayerStepToDoneLeft = arrayOfElem[curPosition - 1].getBoundingClientRect().left -
+								document.getElementById('Chip').getBoundingClientRect().left - 6;
+					var PlayerStepToDoneTop = arrayOfElem[curPosition - 1].getBoundingClientRect().top -
+								document.getElementById('Chip').getBoundingClientRect().top - 5;
+					$('#Chip').animate({left: "+="+(PlayerStepToDoneLeft), top: "+="+(PlayerStepToDoneTop)}, 500, function() {
+						if (curPosition == 10) {
+							document.body.style.background ="linear-gradient(-70deg, #ddfcc7, #befae4)";
+							setTimeout($("#Cover").show(),2000);
+							setTimeout($("#PlayerWon").show(),2000);
+						}
+					});
+				}
+				else {
+					var PlayerStepToDoneLeft = ChipLeft - document.getElementById('Chip').getBoundingClientRect().left - 6;
+					var PlayerStepToDoneTop = arrayOfElem[curPosition].getBoundingClientRect().top -
+								document.getElementById('Chip').getBoundingClientRect().top - 5;
+					$('#Chip').animate({left: "+="+(PlayerStepToDoneLeft), top: "+="+(PlayerStepToDoneTop)}, 500);
+				}			
+			}
+		}
+		document.getElementById("Chip").ondragstart = function(e) {
+			return false;
+		}
+		
+	</script>
+	
+	
+</body>
+
+</html>
