@@ -1,0 +1,31 @@
+H1Style {
+			font-family: Arial Black;
+			font-size: 300%;
+		}
+P1Style {
+			font-family: Open Sans;
+			font-size: 130%;
+		}
+BoxStyle {
+			
+			background: linear-gradient(-70deg, #faffff, #f0fcfc);
+			box-shadow: 0 0 2px gray;
+		}
+Square1 {
+			width: 20px; height: 20px;
+			background: #000000;
+			opacity: 0.08;
+		}
+.AcceptLoseWin {
+			font-family: Open Sans;
+			font-size: 130%;
+			height:50px; 
+			width:235px; 
+			background:#00a2ab; 
+			color: white;
+			border-radius:7px;
+		}
+.AcceptLoseWin:hover {
+			background: #00d5e0;  
+		}
+		
